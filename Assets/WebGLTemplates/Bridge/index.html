@@ -15,7 +15,7 @@
 #if OVERLAY_BACKGROUND_COLOR && OVERLAY_BACKGROUND_COLOR !== '-' && OVERLAY_BACKGROUND_COLOR !== ' '
                 background: {{{ OVERLAY_BACKGROUND_COLOR }}};
 #else
-                background: #383838;
+                background: #242424;
 #endif
                 width: 100%;
                 height: 100%;
@@ -38,7 +38,7 @@
                 align-items: center;
             }
             #icon {
-                max-width: 120px;
+                max-width: 100px;
                 border-radius: 10px;
                 margin-bottom: 20px;
             }
@@ -50,7 +50,7 @@
 #if PROGRESS_BAR_BACKGROUND_COLOR && PROGRESS_BAR_BACKGROUND_COLOR !== '-' && PROGRESS_BAR_BACKGROUND_COLOR !== ' '
                 background: {{{ PROGRESS_BAR_BACKGROUND_COLOR }}};
 #else
-                background: #242424;
+                background: #181818;
 #endif
                 padding: 5px;
             }
@@ -61,7 +61,7 @@
 #if PROGRESS_BAR_FILL_COLOR && PROGRESS_BAR_FILL_COLOR !== '-' && PROGRESS_BAR_FILL_COLOR !== ' '
                 background: {{{ PROGRESS_BAR_FILL_COLOR }}};
 #else
-                background: #FF9A00;
+                background: #9747FF;
 #endif
             }
         </style>
@@ -95,6 +95,7 @@
             // utils
             window.unityInstance = null
             let progressBarFillingInterval = null
+            let progressBarCompleteFillingStarted = false
 
             function sendMessageToUnity(name, value) {
                 if (window.unityInstance !== null) {
@@ -103,16 +104,23 @@
             }
 
             function onUnityLoadingProgressChanged(progress) {
-                if (progress === 0.9) {
+                if (progress >= 1 && progressBarFillingInterval !== null) {
+                    clearInterval(progressBarFillingInterval)
+                    progressBarFillingInterval = null
+                    return
+                }
+
+                if (progressBarCompleteFillingStarted) {
+                    return
+                }
+
+                if (progress >= 0.9) {
+                    progressBarCompleteFillingStarted = true
                     completeProgressBarFilling()
                     return
                 }
 
                 progressBarFill.style.width = `${ progress * 100 }%`
-                if (progress === 1 && progressBarFillingInterval !== null) {
-                    clearInterval(progressBarFillingInterval)
-                    progressBarFillingInterval = null
-                }
             }
             
             function completeProgressBarFilling() {
