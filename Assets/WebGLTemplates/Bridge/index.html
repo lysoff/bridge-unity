@@ -164,6 +164,11 @@
                         gameId: '{{{ VK_PLAY_GAME_ID }}}'
                     },
 #endif
+#if Y8_GAME_ID && Y8_GAME_ID !== '-' && Y8_GAME_ID !== ' '
+                    'y8': {
+                        gameId: '{{{ Y8_GAME_ID }}}'
+                    },
+#endif
 #if ADSGRAM_BLOCK_ID && ADSGRAM_BLOCK_ID !== '-' && ADSGRAM_BLOCK_ID !== ' '
                     'telegram': {
                         adsgramBlockId: '{{{ ADSGRAM_BLOCK_ID }}}'
