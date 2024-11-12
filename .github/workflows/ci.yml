@@ -3,9 +3,10 @@ name: Create Unity Package
 on:
   workflow_dispatch:
 
+env:
+  package_path: "~/playgama-bridge.unitypackage"
+
 jobs:
-  env:
-    package_path: "~/playgama-bridge.unitypackage"
   build:
     runs-on: ubuntu-latest
     steps:
