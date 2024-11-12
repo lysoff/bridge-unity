@@ -40,10 +40,55 @@ namespace Playgama.Modules.Payments
 #endif
             }
         }
+
+        public bool isCatalogSupported
+        {
+            get
+            {
+#if !UNITY_EDITOR
+                return PlaygamaBridgeIsCatalogSupported() == "true";
+#else
+                return false;
+#endif
+            }
+        }
+
+        public bool isPurchaseListSupported
+        {
+            get
+            {
+#if !UNITY_EDITOR
+                return PlaygamaBridgeIsPurchaseListSupported() == "true";
+#else
+                return false;
+#endif
+            }
+        }
         
+        public bool isPurchaseConsumingSupported
+        {
+            get
+            {
+#if !UNITY_EDITOR
+                return PlaygamaBridgeIsPurchaseConsumingSupported() == "true";
+#else
+                return false;
+#endif
+            }
+        }
+
 #if !UNITY_EDITOR
         [DllImport("__Internal")]
         private static extern string PlaygamaBridgeIsPaymentsSupported();
+
+        [DllImport("__Internal")]
+        private static extern string PlaygamaBridgeIsCatalogSupported();
+
+        [DllImport("__Internal")]
+        private static extern string PlaygamaBridgeIsPurchaseListSupported();
+
+        [DllImport("__Internal")]
+        private static extern string PlaygamaBridgeIsPurchaseConsumingSupported();
         
         [DllImport("__Internal")]
         private static extern void PlaygamaBridgePaymentsPurchase(string options);

@@ -531,6 +531,7 @@ PlayerSettings:
     Y8_GAME_ID: '-'
     LAGGED_DEV_ID: '-'
     LAGGED_PUBLISHER_ID: '-'
+    FACEBOOK_PLACEMENT_ID: '-'
   mobileMTRendering:
     Android: 1
     iPhone: 1

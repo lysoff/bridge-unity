@@ -180,6 +180,11 @@
                         adsgramBlockId: '{{{ ADSGRAM_BLOCK_ID }}}'
                     },
 #endif
+#if FACEBOOK_PLACEMENT_ID && FACEBOOK_PLACEMENT_ID !== '-' && FACEBOOK_PLACEMENT_ID !== ' '
+                    'facebook': {
+                        placementId: '{{{ FACEBOOK_PLACEMENT_ID }}}'
+                    },
+#endif
                 }
             }
 
@@ -694,6 +699,18 @@
 
             window.getIsPaymentsSupported = function() {
                 return bridge.payments.isSupported.toString()
+            }
+
+            window.getIsCatalogSupported = function() {
+                return bridge.payments.isCatalogSupported.toString()
+            }
+
+            window.getIsPurchaseListSupported = function() {
+                return bridge.payments.isPurchaseListSupported.toString()
+            }
+
+            window.getIsPurchaseConsumingSupported = function() {
+                return bridge.payments.isPurchaseConsumingSupported.toString()
             }
 
             window.paymentsPurchase = function(options) {
