@@ -20,7 +20,8 @@ jobs:
         uses: game-ci/unity-builder@v2
         with:
           unityVersion: '6000.0.23f1' # Specify your Unity version here
-          licenseFile: ${{ secrets.UNITY_LICENSE }} 
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
       - name: Run Unity to export package
         run: |
