@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.17.0
+  bundleVersion: 1.18.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -531,6 +531,7 @@ PlayerSettings:
     Y8_GAME_ID: '-'
     LAGGED_DEV_ID: '-'
     LAGGED_PUBLISHER_ID: '-'
+    FACEBOOK_PLACEMENT_ID: '-'
   mobileMTRendering:
     Android: 1
     iPhone: 1

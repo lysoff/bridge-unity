@@ -347,6 +347,30 @@ mergeInto(LibraryManager.library, {
         return buffer
     },
 
+    PlaygamaBridgeIsCatalogSupported: function() {
+        var isGetCatalogSupported = window.getIsCatalogSupported()
+        var bufferSize = lengthBytesUTF8(isGetCatalogSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isGetCatalogSupported, buffer, bufferSize)
+        return buffer
+    },
+
+    PlaygamaBridgeIsPurchaseListSupported: function() {
+        var isGetPurchasesSupported = window.getIsPurchaseListSupported()
+        var bufferSize = lengthBytesUTF8(isGetPurchasesSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isGetPurchasesSupported, buffer, bufferSize)
+        return buffer
+    },
+
+    PlaygamaBridgeIsPurchaseConsumingSupported: function() {
+        var isConsumePurchaseSupported = window.getIsPurchaseConsumingSupported()
+        var bufferSize = lengthBytesUTF8(isConsumePurchaseSupported) + 1
+        var buffer = _malloc(bufferSize)
+        stringToUTF8(isConsumePurchaseSupported, buffer, bufferSize)
+        return buffer
+    },
+
     PlaygamaBridgePaymentsPurchase: function(options) {
         window.paymentsPurchase(UTF8ToString(options))
     },
