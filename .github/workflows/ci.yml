@@ -1,3 +1,7 @@
+name: Create Unity Package
+
+on:
+  workflow_dispatch:
 
 jobs:
   env:
