@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Unity
-        uses: game-ci/unity-actions@latest
+        uses: Unity-Technologies/unity-actions/setup@v1
         with:
           unityVersion: '6000.0.23f1' # Specify your Unity version here
 
