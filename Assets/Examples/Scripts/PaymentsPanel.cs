@@ -8,9 +8,9 @@ namespace Examples
     public class PaymentsPanel : MonoBehaviour
     {
         [SerializeField] private Text _isSupported;
-        [SerializeField] private Text _isCatalogSupported;
-        [SerializeField] private Text _isPurchaseListSupported;
-        [SerializeField] private Text _isPurchaseConsumingSupported;
+        [SerializeField] private Text _isGetCatalogSupported;
+        [SerializeField] private Text _isGetPurchasesSupported;
+        [SerializeField] private Text _isConsumePurchaseSupported;
         [SerializeField] private Button _getCatalogButton;
         [SerializeField] private Button _getPurchasesButton;
         [SerializeField] private Button _purchaseButton;
@@ -20,9 +20,9 @@ namespace Examples
         private void Start()
         {
             _isSupported.text = $"Is Supported: { Bridge.payments.isSupported }";
-            _isCatalogSupported.text = $"Is Catalog Supported: { Bridge.payments.isCatalogSupported }";
-            _isPurchaseListSupported.text = $"Is Purchase List Supported: { Bridge.payments.isPurchaseListSupported }";
-            _isPurchaseConsumingSupported.text = $"Is Purchase Consuming Supported: { Bridge.payments.isPurchaseConsumingSupported }";
+            _isGetCatalogSupported.text = $"Is Get Catalog Supported: { Bridge.payments.isGetCatalogSupported }";
+            _isGetPurchasesSupported.text = $"Is Get Purchases Supported: { Bridge.payments.isGetPurchasesSupported }";
+            _isConsumePurchaseSupported.text = $"Is Consume Purchase Supported: { Bridge.payments.isConsumePurchaseSupported }";
             _getCatalogButton.onClick.AddListener(OnGetCatalogButtonClicked);
             _getPurchasesButton.onClick.AddListener(OnGetPurchasesButtonClicked);
             _purchaseButton.onClick.AddListener(OnPurchaseButtonClicked);

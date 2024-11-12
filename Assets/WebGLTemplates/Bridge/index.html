@@ -702,15 +702,15 @@
             }
 
             window.getIsCatalogSupported = function() {
-                return bridge.payments.isCatalogSupported.toString()
+                return bridge.payments.isGetCatalogSupported.toString()
             }
 
             window.getIsPurchaseListSupported = function() {
-                return bridge.payments.isPurchaseListSupported.toString()
+                return bridge.payments.isGetPurchasesSupported.toString()
             }
 
             window.getIsPurchaseConsumingSupported = function() {
-                return bridge.payments.isPurchaseConsumingSupported.toString()
+                return bridge.payments.isConsumePurchaseSupported.toString()
             }
 
             window.paymentsPurchase = function(options) {

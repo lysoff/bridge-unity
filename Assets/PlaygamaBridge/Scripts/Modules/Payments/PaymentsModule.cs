@@ -41,7 +41,7 @@ namespace Playgama.Modules.Payments
             }
         }
 
-        public bool isCatalogSupported
+        public bool isGetCatalogSupported
         {
             get
             {
@@ -53,7 +53,7 @@ namespace Playgama.Modules.Payments
             }
         }
 
-        public bool isPurchaseListSupported
+        public bool isGetPurchasesSupported
         {
             get
             {
@@ -65,7 +65,7 @@ namespace Playgama.Modules.Payments
             }
         }
         
-        public bool isPurchaseConsumingSupported
+        public bool isConsumePurchaseSupported
         {
             get
             {

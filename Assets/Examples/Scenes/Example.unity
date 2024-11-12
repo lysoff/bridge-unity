@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 116271981}
   - component: {fileID: 116271980}
   m_Layer: 5
-  m_Name: IsPurchaseListSupported
+  m_Name: IsGetPurchasesSupported
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6692,7 +6692,7 @@ GameObject:
   - component: {fileID: 691627448}
   - component: {fileID: 691627447}
   m_Layer: 5
-  m_Name: IsPurchaseConsumingSupported
+  m_Name: IsConsumePurchaseSupported
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8866,9 +8866,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSupported: {fileID: 327325182}
-  _isCatalogSupported: {fileID: 1778425370}
-  _isPurchaseListSupported: {fileID: 116271980}
-  _isPurchaseConsumingSupported: {fileID: 691627447}
+  _isGetCatalogSupported: {fileID: 1778425370}
+  _isGetPurchasesSupported: {fileID: 116271980}
+  _isConsumePurchaseSupported: {fileID: 691627447}
   _getCatalogButton: {fileID: 664344868}
   _getPurchasesButton: {fileID: 795512512}
   _purchaseButton: {fileID: 878674370}
@@ -16035,7 +16035,7 @@ GameObject:
   - component: {fileID: 1778425371}
   - component: {fileID: 1778425370}
   m_Layer: 5
-  m_Name: IsCatalogSupported
+  m_Name: IsGetCatalogSupported
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

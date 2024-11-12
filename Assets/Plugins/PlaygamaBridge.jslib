@@ -348,26 +348,26 @@ mergeInto(LibraryManager.library, {
     },
 
     PlaygamaBridgeIsCatalogSupported: function() {
-        var isCatalogSupported = window.getIsCatalogSupported()
-        var bufferSize = lengthBytesUTF8(isCatalogSupported) + 1
+        var isGetCatalogSupported = window.getIsCatalogSupported()
+        var bufferSize = lengthBytesUTF8(isGetCatalogSupported) + 1
         var buffer = _malloc(bufferSize)
-        stringToUTF8(isCatalogSupported, buffer, bufferSize)
+        stringToUTF8(isGetCatalogSupported, buffer, bufferSize)
         return buffer
     },
 
     PlaygamaBridgeIsPurchaseListSupported: function() {
-        var isPurchaseListSupported = window.getIsPurchaseListSupported()
-        var bufferSize = lengthBytesUTF8(isPurchaseListSupported) + 1
+        var isGetPurchasesSupported = window.getIsPurchaseListSupported()
+        var bufferSize = lengthBytesUTF8(isGetPurchasesSupported) + 1
         var buffer = _malloc(bufferSize)
-        stringToUTF8(isPurchaseListSupported, buffer, bufferSize)
+        stringToUTF8(isGetPurchasesSupported, buffer, bufferSize)
         return buffer
     },
 
     PlaygamaBridgeIsPurchaseConsumingSupported: function() {
-        var isPurchaseConsumingSupported = window.getIsPurchaseConsumingSupported()
-        var bufferSize = lengthBytesUTF8(isPurchaseConsumingSupported) + 1
+        var isConsumePurchaseSupported = window.getIsPurchaseConsumingSupported()
+        var bufferSize = lengthBytesUTF8(isConsumePurchaseSupported) + 1
         var buffer = _malloc(bufferSize)
-        stringToUTF8(isPurchaseConsumingSupported, buffer, bufferSize)
+        stringToUTF8(isConsumePurchaseSupported, buffer, bufferSize)
         return buffer
     },
 
