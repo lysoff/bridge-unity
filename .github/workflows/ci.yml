@@ -1,34 +1,34 @@
-name: Create Unity Package
+name: Export Unity Package
 
 on:
   workflow_dispatch:
-
-env:
-  package_path: "~/playgama-bridge.unitypackage"
+    inputs:
+      exportPath:
+        description: "Path to the folder in Unity project to export (relative to Assets/)"
+        required: true
+        default: "."
 
 jobs:
-  build:
+  export-package:
     runs-on: ubuntu-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v2
 
-      # Install the packager. We are putting it outside the working directory so we dont include it by mistake
-      - name: Install Unity Packager
-        run: |
-          git clone https://github.com/Lachee/Unity-Package-Exporter.git "../tools/unity-package-exporter"
-          dotnet publish -c Release -o ../tools "../tools/unity-package-exporter/UnityPackageExporter"
-        
-      # Pack the assets
-      - name: Package Project
-        run: |
-          echo "Creating package ${{env.package_path}}"
-          dotnet ../tools/UnityPackageExporter.dll --project ./ --output package.unitypackage --exclude ".*" --exclude "Documentation"
-        
-      # Upload artifact
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3.0.0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Unity
+        uses: game-ci/unity-setup@v2
         with:
-          name: Unity Package
-          path: ${{env.package_path}}   
+          unityVersion: '6000.0.23f1' # Specify your Unity version here
+
+      - name: Run Unity to export package
+        run: |
+          unity-editor -batchmode -nographics -quit \
+            -projectPath . \
+            -executeMethod ExportUnityPackage.RunExport \
+            -exportPath "${{ github.event.inputs.exportPath }}"
+      - name: Upload Unity package
+        uses: actions/upload-artifact@v3
+        with:
+          name: exported-unity-package
+          path: playgama-bridge.unitypackage
