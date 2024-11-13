@@ -15,7 +15,7 @@
  * along with Playgama Bridge. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#if UNITY_WEBGL
+#if !UNITY_ANDROID
 using Playgama.Common;
 using Playgama.Modules.Advertisement;
 using Playgama.Modules.Device;

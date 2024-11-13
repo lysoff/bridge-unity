@@ -15,7 +15,7 @@
  * along with Playgama Bridge. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#if UNITY_WEBGL
+#if !UNITY_ANDROID
 using UnityEngine;
 
 namespace Playgama.Common
