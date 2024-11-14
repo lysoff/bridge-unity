@@ -1,22 +1,34 @@
 using UnityEditor;
-
+using UnityEngine;
+using System.Linq;
+ 
 public class ExportUnityPackage
 {
-    public static void RunExport()
+    [MenuItem("Tools/Export All Assets")]
+    public static void ExportAllAssets()
     {
-        // Get the export path from the environment variable
-        string exportPath = System.Environment.GetEnvironmentVariable("exportPath");
-        if (string.IsNullOrEmpty(exportPath))
+        // Define the file path for the exported package
+        string packagePath = EditorUtility.SaveFilePanel(
+            "Export All Assets",
+            "",
+            "AllAssetsPackage.unitypackage",
+            "unitypackage");
+ 
+        if (string.IsNullOrEmpty(packagePath))
         {
-            exportPath = "MyFolder"; // Default folder if no input is provided
+            Debug.LogWarning("Export canceled by the user.");
+            return;
         }
-
-        // Define the path within Assets and the output file
-        string folderPath = $"Assets/{exportPath}";
-        string outputFileName = "exported-package.unitypackage";
-
-        // Export the package
-        AssetDatabase.ExportPackage(folderPath, outputFileName, ExportPackageOptions.Recurse);
-        Debug.Log($"Exported {folderPath} to {outputFileName}");
+ 
+        // Get all asset paths in the Assets folder
+        string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
+ 
+        // Filter paths to include only those that are under the "Assets" folder
+       var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
+ 
+        // Export all assets as a Unity package
+        AssetDatabase.ExportPackage(assetsToExport, packagePath, ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
+ 
+        // Debug.Log("All assets have been exported to: " + packagePath);
     }
 }
