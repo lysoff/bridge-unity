@@ -21,7 +21,7 @@ jobs:
         #Optional: Set the output path for the package.
         #outputPackagePath: './artifacts/output.unitypackage'
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Output package
         path: ${{ steps.extract_unity_package.outputs.artifactsPath }}
