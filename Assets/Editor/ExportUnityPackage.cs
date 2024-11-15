@@ -16,7 +16,7 @@ public class ExportUnityPackage
  
         if (string.IsNullOrEmpty(packagePath))
         {
-            Debug.LogWarning("Export canceled by the user.");
+            // Debug.LogWarning("Export canceled by the user.");
             return;
         }
  
