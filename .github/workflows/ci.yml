@@ -15,9 +15,9 @@ public class ExportUnityPackage
         string exportPath = $"{path}/{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
-			if (dir != null && !dir.Exists) {
-				dir.Create();
-			}
+            if (dir != null && !dir.Exists) {
+                dir.Create();
+            }
  
         // Get all asset paths in the Assets folder
         string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
