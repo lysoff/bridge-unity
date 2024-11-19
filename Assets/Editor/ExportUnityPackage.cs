@@ -34,9 +34,9 @@ public class ExportUnityPackage
  
         var fullpath = Path.GetFullPath(exportPath);
 
-        // FileInfo fileInfo = new FileInfo(exportPath);
-        // long fileSize = fileInfo.Length; // File size in bytes
-        // Debug.Log($"File: {fullpath}, Size: {fileSize} bytes");
+        FileInfo fileInfo = new FileInfo("./README.md");
+        long fileSize = fileInfo.Length; // File size in bytes
+        Debug.Log($"File: README.md, Size: {fileSize} bytes");
 
         Debug.Log($"Path is: {fullpath}");
 
