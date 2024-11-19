@@ -1,6 +1,7 @@
-using UnityEditor;
 using System.IO;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
  
 public class ExportUnityPackage
 {
@@ -14,9 +15,9 @@ public class ExportUnityPackage
         string exportPath = $"{path}/{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
-			if (dir != null && !dir.Exists) {
-				dir.Create();
-			}
+            if (dir != null && !dir.Exists) {
+                dir.Create();
+            }
  
         // Get all asset paths in the Assets folder
         string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
@@ -30,8 +31,10 @@ public class ExportUnityPackage
             exportPath, 
             ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
  
+        var fullpath = Path.GetFullPath(exportPath);
 
-        return Path.GetFullPath(exportPath);
-        // Debug.Log("All assets have been exported to: " + packagePath);
+        Debug.Log($"Path is: {fullpath}");
+
+        return fullpath;
     }
 }
