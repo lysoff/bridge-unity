@@ -27,6 +27,10 @@ jobs:
           targetPlatform: WebGL
           buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
       - name: List all files recursively
         run: find .
         
