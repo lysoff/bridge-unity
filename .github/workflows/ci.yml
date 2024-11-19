@@ -16,14 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Cache
-      - uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-
       # Build
       - name: Build .unitypackage
         uses: game-ci/unity-builder@v4
@@ -36,7 +28,7 @@ jobs:
           buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
       - name: List all files recursively
-        run: find ./**/*.unitypackage
+        run: find .
         
       # Upload
       - name: Upload .unitypackage
