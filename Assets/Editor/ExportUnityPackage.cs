@@ -5,13 +5,13 @@ using System.Linq;
 public class ExportUnityPackage
 {
     [MenuItem("Tools/Export All Assets")]
-    public static void ExportAllAssets()
+    public static string ExportAllAssets()
     {
-        var path = "build";
-        var packageName = "playgama-bridge";
+        string path = "build";
+        string packageName = "playgama-bridge";
 
         // Define the file path for the exported package
-        var exportPath = $"{path}/{packageName}.unitypackage";
+        string exportPath = $"{path}/{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
 			if (dir != null && !dir.Exists) {
@@ -29,6 +29,7 @@ public class ExportUnityPackage
             assetsToExport, 
             exportPath, 
             ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
+ 
 
         return Path.GetFullPath(exportPath);
         // Debug.Log("All assets have been exported to: " + packagePath);
