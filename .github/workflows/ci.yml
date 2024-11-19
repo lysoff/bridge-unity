@@ -27,10 +27,13 @@ jobs:
           targetPlatform: WebGL
           buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
+      - name: List all files recursively
+        run: find .
+        
       # Upload
       - name: Upload .unitypackage
         uses: actions/upload-artifact@v4
         with:
           name: Unity Package
-          path: /build/playgama-bridge.unitypackage
+          path: playgama-bridge.unitypackage
           
