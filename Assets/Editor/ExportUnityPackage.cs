@@ -34,7 +34,7 @@ public class ExportUnityPackage
 
         FileInfo fileInfo = new FileInfo(exportPath);
             long fileSize = fileInfo.Length; // File size in bytes
-            Console.WriteLine($"File: {fullpath}, Size: {fileSize} bytes")
+            Console.WriteLine($"File: {fullpath}, Size: {fileSize} bytes");
 
         Debug.Log($"Path is: {fullpath}");
 
