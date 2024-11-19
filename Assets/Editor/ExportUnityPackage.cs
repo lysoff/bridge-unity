@@ -7,12 +7,7 @@ public class ExportUnityPackage
 {  
    // The name of the unitypackage to output.
    const string packageName = "playgama-bridge";
- 
-   string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
- 
-    // Filter paths to include only those that are under the "Assets" folder
-   var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
- 
+   
    // Path to export to.
    const string exportPath = "Build";
 
@@ -22,6 +17,12 @@ public class ExportUnityPackage
    }
  
    public static string ExportPackage (string exportPath) {
+    string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
+ 
+    // Filter paths to include only those that are under the "Assets" folder
+    var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
+ 
+    
     // Ensure export path.
     var dir = new FileInfo(exportPath).Directory;
     if (dir != null && !dir.Exists) {
