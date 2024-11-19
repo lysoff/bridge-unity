@@ -36,7 +36,7 @@ jobs:
           buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
       - name: List all files recursively
-        run: find .
+        run: find ./**/*.unitypackage
         
       # Upload
       - name: Upload .unitypackage
