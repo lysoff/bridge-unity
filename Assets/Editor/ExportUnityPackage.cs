@@ -12,7 +12,7 @@ public class ExportUnityPackage
         string packageName = "playgama-bridge";
 
         // Define the file path for the exported package
-        string exportPath = $"{path}/{packageName}.unitypackage";
+        string exportPath = $"/{path}/{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
             if (dir != null && !dir.Exists) {
