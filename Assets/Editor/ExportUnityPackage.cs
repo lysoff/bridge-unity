@@ -11,7 +11,7 @@ public class ExportUnityPackage
         string packageName = "playgama-bridge";
 
         // Define the file path for the exported package
-        string exportPath = $"./build/WebGL/{packageName}.unitypackage";
+        string exportPath = $"/build/WebGL/{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
             if (dir != null && !dir.Exists) {
