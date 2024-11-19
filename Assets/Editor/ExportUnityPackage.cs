@@ -11,7 +11,7 @@ public class ExportUnityPackage
         string packagePath = EditorUtility.SaveFilePanel(
             "Export All Assets",
             "",
-            "AllAssetsPackage.unitypackage",
+            "playgama-bridge.unitypackage",
             "unitypackage");
  
         if (string.IsNullOrEmpty(packagePath))
