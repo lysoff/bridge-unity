@@ -1,20 +1,26 @@
-name: Export Unity Package
+name: Export Package
 
 on:
   workflow_dispatch:
-    inputs:
-      exportPath:
-        description: "Path to the folder in Unity project to export (relative to Assets/)"
-        required: true
-        default: "."
 
 jobs:
-  export-package:
+  build:
+    name: Build UnityPackage
     runs-on: ubuntu-latest
-
     steps:
+      # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      # Cache
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library
+          restore-keys: Library-
 
       # Build
       - name: Build .unitypackage
@@ -27,17 +33,9 @@ jobs:
           targetPlatform: WebGL
           buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
-      - name: Sleep for 30 seconds
-        run: sleep 30s
-        shell: bash
-
-      - name: List all files recursively
-        run: find .
-        
       # Upload
       - name: Upload .unitypackage
         uses: actions/upload-artifact@v4
         with:
           name: Unity Package
-          path: build/WebGL
-          
+          path: Build
