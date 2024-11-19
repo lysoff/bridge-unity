@@ -1,40 +1,36 @@
-using System.IO;
-using System.Linq;
-using UnityEditor;
-using UnityEngine;
- 
-public class ExportUnityPackage
-{
-    [MenuItem("Tools/Export All Assets")]
-    public static string ExportAllAssets()
-    {
-        string path = "build";
-        string packageName = "playgama-bridge";
+name: Export Unity Package
 
-        // Define the file path for the exported package
-        string exportPath = $"{path}/{packageName}.unitypackage";
+on:
+  workflow_dispatch:
+    inputs:
+      exportPath:
+        description: "Path to the folder in Unity project to export (relative to Assets/)"
+        required: true
+        default: "."
 
-        var dir = new FileInfo(exportPath).Directory;
-            if (dir != null && !dir.Exists) {
-                dir.Create();
-            }
- 
-        // Get all asset paths in the Assets folder
-        string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
- 
-        // Filter paths to include only those that are under the "Assets" folder
-       var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
- 
-        // Export all assets as a Unity package
-        AssetDatabase.ExportPackage(
-            assetsToExport, 
-            exportPath, 
-            ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
- 
-        var fullpath = Path.GetFullPath(exportPath);
+jobs:
+  export-package:
+    runs-on: ubuntu-latest
 
-        Debug.Log($"Path is: {fullpath}");
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        return fullpath;
-    }
-}
+      # Build
+      - name: Build .unitypackage
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: WebGL
+          buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
+
+      # Upload
+      - name: Upload .unitypackage
+        uses: actions/upload-artifact@v4
+        with:
+          name: Unity Package
+          path: playgama-bridge.unitypackage
+          
