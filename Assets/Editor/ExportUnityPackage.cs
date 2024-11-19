@@ -23,18 +23,20 @@ public class ExportUnityPackage
  
         // Filter paths to include only those that are under the "Assets" folder
        var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
- 
+
+        Debug.Log($"################## AssetDatabase.ExportPackage BEGIN");
         // Export all assets as a Unity package
         AssetDatabase.ExportPackage(
             assetsToExport, 
             exportPath, 
             ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
+       Debug.Log($"################## AssetDatabase.ExportPackage END");
  
         var fullpath = Path.GetFullPath(exportPath);
 
-        FileInfo fileInfo = new FileInfo(exportPath);
-        long fileSize = fileInfo.Length; // File size in bytes
-        Debug.Log($"File: {fullpath}, Size: {fileSize} bytes");
+        // FileInfo fileInfo = new FileInfo(exportPath);
+        // long fileSize = fileInfo.Length; // File size in bytes
+        // Debug.Log($"File: {fullpath}, Size: {fileSize} bytes");
 
         Debug.Log($"Path is: {fullpath}");
 
