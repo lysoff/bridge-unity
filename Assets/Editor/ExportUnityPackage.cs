@@ -11,7 +11,7 @@ public class ExportUnityPackage
         string packageName = "playgama-bridge";
 
         // Define the file path for the exported package
-        string exportPath = $"/build/WebGL/{packageName}.unitypackage";
+        string exportPath = Path.Combine(Application.dataPath, "../build/WebGL", $"{packageName}.unitypackage");
 
         var dir = new FileInfo(exportPath).Directory;
             if (dir != null && !dir.Exists) {
@@ -32,9 +32,9 @@ public class ExportUnityPackage
  
         var fullpath = Path.GetFullPath(exportPath);
 
-        // FileInfo fileInfo = new FileInfo(exportPath);
-        // long fileSize = fileInfo.Length; // File size in bytes
-        // Debug.Log($"File: {fullpath}, Size: {fileSize} bytes");
+        FileInfo fileInfo = new FileInfo(exportPath);
+        long fileSize = fileInfo.Length; // File size in bytes
+        Debug.Log($"File: {fullpath}, Size: {fileSize} bytes");
 
         Debug.Log($"Path is: {fullpath}");
 
