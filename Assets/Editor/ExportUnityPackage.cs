@@ -6,17 +6,19 @@ using UnityEngine;
 public class ExportUnityPackage
 {  
    // The name of the unitypackage to output.
-   const string k_PackageName = "playgama-bridge";
+   const string packageName = "playgama-bridge";
  
-   // The path to the package under the `Assets/` folder.
-   const string k_PackagePath = "Editor";
+   string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
+ 
+    // Filter paths to include only those that are under the "Assets" folder
+   var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
  
    // Path to export to.
-   const string k_ExportPath = "Build";
+   const string exportPath = "Build";
 
    [MenuItem("Tools/Export All Assets")]
    public static void ExportAllAssets () {
-    ExportPackage($"{k_ExportPath}/{k_PackageName}.unitypackage");
+    ExportPackage($"{exportPath}/{packageName}.unitypackage");
    }
  
    public static string ExportPackage (string exportPath) {
@@ -28,7 +30,7 @@ public class ExportUnityPackage
  
     // Export
     AssetDatabase.ExportPackage(
-     $"Assets/{k_PackagePath}",
+     assetsToExport,
      exportPath,
      ExportPackageOptions.Recurse
     );
