@@ -8,11 +8,10 @@ public class ExportUnityPackage
     [MenuItem("Tools/Export All Assets")]
     public static string ExportAllAssets()
     {
-        string path = "build";
         string packageName = "playgama-bridge";
 
         // Define the file path for the exported package
-        string exportPath = $"/{path}/{packageName}.unitypackage";
+        string exportPath = $"{packageName}.unitypackage";
 
         var dir = new FileInfo(exportPath).Directory;
             if (dir != null && !dir.Exists) {
