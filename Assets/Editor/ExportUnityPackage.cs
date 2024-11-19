@@ -29,7 +29,9 @@ public class ExportUnityPackage
             assetsToExport, 
             exportPath, 
             ExportPackageOptions.Interactive | ExportPackageOptions.Recurse);
- 
+
+	    Console.WriteLine("-------------------------------------------------------------------------");
+	    Console.WriteLine($"--------------------{Path.GetFullPath(exportPath)}----------------------");
 
         return Path.GetFullPath(exportPath);
         // Debug.Log("All assets have been exported to: " + packagePath);
