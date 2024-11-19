@@ -25,14 +25,14 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
-          buildMethod: ExportPackageExample.Editor.ExportUnityPackage.Export # Path to the export method containing the namespace.
+          buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
       # Upload
       - name: Upload .unitypackage
         uses: actions/upload-artifact@v4
         with:
           name: Unity Package
-          path: Build
+          path: playgama-bridge.unitypackage
 
 
       # - name: Build project
