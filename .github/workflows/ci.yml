@@ -37,5 +37,5 @@ jobs:
       - name: Upload .unitypackage
         uses: actions/upload-artifact@v4
         with:
-          name: playgama-bridge.unitypackage
-          path: Build/playgama-bridge.unitypackage
+          name: playgama-bridge
+          path: Build
