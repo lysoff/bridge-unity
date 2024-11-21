@@ -9,7 +9,7 @@ public class ExportUnityPackage
    const string packageName = "playgama-bridge";
    
    // Path to export to.
-   const string exportPath = "Build";
+   const string exportPath = "Build/package";
 
    [MenuItem("Tools/Export All Assets")]
    public static void ExportAllAssets () {
