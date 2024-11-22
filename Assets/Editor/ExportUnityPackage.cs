@@ -33,7 +33,7 @@ public class ExportUnityPackage
     AssetDatabase.ExportPackage(
      assetsToExport,
      exportPath,
-     ExportPackageOptions.Recurse
+     ExportPackageOptions.Recurse | ExportPackageOptions.IncludeDependencies
     );
  
     return Path.GetFullPath(exportPath);
