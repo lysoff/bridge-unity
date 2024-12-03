@@ -54,6 +54,10 @@ jobs:
           name: playgama-bridge
           path: Build
 
+      # Add tag name
+      - name: Rename file 
+        run: mv Build/package/playgama-bridge.unitypackage Build/package/playgama-bridge-${{inputs.tag_name}}.unitypackage
+
       # Release
       - name: Release
         uses: softprops/action-gh-release@v2
