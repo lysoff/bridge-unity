@@ -2,6 +2,19 @@ name: Export Package
 
 on:
   workflow_dispatch:
+    inputs:
+        tagname:
+          description: 'Version tag v*'
+          required: true
+          type: string
+        release_name: 
+          description: 'Release name'
+          required: true
+          type: string
+        summary:
+          description: 'Release summary'
+          required: true
+          type: string
 
 jobs:
   build:
@@ -39,3 +52,16 @@ jobs:
         with:
           name: playgama-bridge
           path: Build
+
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ inputs.tagname }}
+          release_name: Release ${{ inputs.release_name }}
+          body: ${{inputs.summary}}
+          draft: false
+          prerelease: false
