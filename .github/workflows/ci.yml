@@ -3,7 +3,7 @@ name: Export Package
 on:
   workflow_dispatch:
     inputs:
-        tagname:
+        tag_name:
           description: 'Version tag v*'
           required: true
           type: string
@@ -54,15 +54,12 @@ jobs:
           name: playgama-bridge
           path: Build
 
-          
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      # Release
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.tagname }}
-          release_name: Release ${{ inputs.release_name }}
+          tag_name: ${{ inputs.tag_name }}
+          name: ${{ inputs.release_name }}
           body: ${{inputs.summary}}
-          draft: false
-          prerelease: false
+          files: Build/package/playgama-bridge.unitypackage
+          
