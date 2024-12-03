@@ -56,7 +56,7 @@ jobs:
 
       # Add tag name
       - name: Rename file 
-        run: mv Build/package/playgama-bridge.unitypackage Build/package/playgama-bridge-${{inputs.tag_name}}.unitypackage
+        run: sudo mv Build/package/playgama-bridge.unitypackage Build/package/playgama-bridge-${{inputs.tag_name}}.unitypackage
 
       # Release
       - name: Release
