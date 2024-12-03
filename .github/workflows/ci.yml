@@ -65,5 +65,5 @@ jobs:
           tag_name: ${{ inputs.tag_name }}
           name: ${{ inputs.release_name }}
           body: ${{inputs.summary}}
-          files: Build/package/playgama-bridge.unitypackage
+          files: Build/package/playgama-bridge-${{inputs.tag_name}}.unitypackage
           
