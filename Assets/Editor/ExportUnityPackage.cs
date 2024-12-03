@@ -19,7 +19,7 @@ public class ExportUnityPackage
    public static string ExportPackage (string exportPath) {
     string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
  
-    // Filter paths to include only those that are under the "Assets" folder
+    // Filter paths to include only those that are under the "Assets" folder.
     var assetsToExport = allAssetPaths.Where(path => path.StartsWith("Assets/") && !path.Equals("Assets")).ToArray();
  
     
