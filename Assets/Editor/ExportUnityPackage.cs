@@ -6,7 +6,7 @@ using UnityEngine;
 public class ExportUnityPackage
 {  
    // The name of the unitypackage to output.
-   const string packageName = "playgama-bridge";
+   const string packageName = "playgama_bridge";
    
    // Path to export to.
    const string exportPath = "Build/package";
