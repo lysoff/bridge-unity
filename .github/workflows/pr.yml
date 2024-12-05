@@ -15,6 +15,8 @@ jobs:
       - name: Test
         run: cat Release.txt
       - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.TRIGGER_REPO_TOKEN }}
         uses: softprops/action-gh-release@v2
         with:
           repository: lysoff/bridge-construct
