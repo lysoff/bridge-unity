@@ -14,11 +14,21 @@ jobs:
         run: echo ${{ github.sha }} > Release.txt
       - name: Test
         run: cat Release.txt
-      - name: Release
+      - name: Trigger workflow
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_REPO_TOKEN }}
-        uses: softprops/action-gh-release@v2
-        with:
-          repository: lysoff/bridge-construct
-          tag_name: v3.0.0
-          files: Release.txt
+        run: |
+            curl -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              https://api.github.com/repos/lysoff/bridge-construct/actions/workflows/release.yml/dispatches \
+              -d '{"ref":"main"}'
+        
+      # - name: Release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.TRIGGER_REPO_TOKEN }}
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     repository: lysoff/bridge-construct
+      #     tag_name: v3.0.0
+      #     files: Release.txt
