@@ -2,6 +2,19 @@ name: Main
 
 on: 
   workflow_dispatch:
+     inputs:
+        tag_name:
+          description: 'Version tag v*'
+          required: true
+          type: string
+        release_name: 
+          description: 'Release name'
+          required: true
+          type: string
+        summary:
+          description: 'Release summary'
+          required: true
+          type: string
 
 jobs:
   build:
@@ -22,7 +35,7 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer $GITHUB_TOKEN" \
               https://api.github.com/repos/lysoff/bridge-construct/actions/workflows/release.yml/dispatches \
-              -d '{"ref":"main"}'
+              -d '{"ref":"main", "inputs": { "tag_name": "${{ inputs.tag_name }}", "release_name": "${{ inputs.release_name }}", "summary": "${{ inputs.summary }}" }}'
         
       # - name: Release
       #   env:
