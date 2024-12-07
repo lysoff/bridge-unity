@@ -66,49 +66,49 @@ jobs:
             Assets/WebGLTemplates/Bridge/playgama-bridge.js
             Assets/WebGLTemplates/Bridge/index.html
 
-      - name: Commit-changes
-        run: |
-          git add .
-          git config --global user.email "services@playgama.com"
-          git config --global user.name "Playgama"
-          git commit -m 'build changes'
+      # - name: Commit-changes
+      #   run: |
+      #     git add .
+      #     git config --global user.email "services@playgama.com"
+      #     git config --global user.name "Playgama"
+      #     git commit -m 'build changes'
 
-      # Cache
-      - name: Cache
-        uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library
-          restore-keys: Library-
+      # # Cache
+      # - name: Cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: Library
+      #     key: Library
+      #     restore-keys: Library-
 
-      # Build
-      - name: Build .unitypackage
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: WebGL
-          buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
+      # # Build
+      # - name: Build .unitypackage
+      #   uses: game-ci/unity-builder@v4
+      #   env:
+      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      #   with:
+      #     targetPlatform: WebGL
+      #     buildMethod: ExportUnityPackage.ExportAllAssets # Path to the export method containing the namespace.
 
-      # Upload
-      - name: Upload .unitypackage
-        uses: actions/upload-artifact@v4
-        with:
-          name: playgama-bridge
-          path: Build
+      # # Upload
+      # - name: Upload .unitypackage
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: playgama-bridge
+      #     path: Build
 
-      # Add tag name
-      - name: Rename file 
-        run: sudo mv Build/package/playgama_bridge.unitypackage Build/package/playgama_bridge_${{inputs.tag_name}}.unitypackage
+      # # Add tag name
+      # - name: Rename file 
+      #   run: sudo mv Build/package/playgama_bridge.unitypackage Build/package/playgama_bridge_${{inputs.tag_name}}.unitypackage
 
-      # Release
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ inputs.tag_name }}
-          name: ${{ inputs.release_name }}
-          body: ${{inputs.summary}}
-          files: Build/package/playgama_bridge_${{inputs.tag_name}}.unitypackage
+      # # Release
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     tag_name: ${{ inputs.tag_name }}
+      #     name: ${{ inputs.release_name }}
+      #     body: ${{inputs.summary}}
+      #     files: Build/package/playgama_bridge_${{inputs.tag_name}}.unitypackage
       
