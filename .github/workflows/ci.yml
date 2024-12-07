@@ -30,7 +30,7 @@ jobs:
 
       - name: New branch
         run: |
-          git checkout -b build branch
+          git checkout -b build-branch
 
       # Checkout bridge by version
       - name: Checkout bridge by version
