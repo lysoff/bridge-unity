@@ -28,6 +28,10 @@ jobs:
         with:
           lfs: true
 
+      - name: New branch
+        run: |
+          git checkout -b build branch
+
       # Checkout bridge by version
       - name: Checkout bridge by version
         uses: actions/checkout@v4
@@ -63,6 +67,11 @@ jobs:
           path: |
             Assets/WebGLTemplates/Bridge/playgama-bridge.js
             Assets/WebGLTemplates/Bridge/index.html
+
+      - name: Commit-changes
+        run: |
+          git add .
+          git commit -m 'build changes'
 
       # Cache
       - name: Cache
@@ -102,4 +111,4 @@ jobs:
           name: ${{ inputs.release_name }}
           body: ${{inputs.summary}}
           files: Build/package/playgama_bridge_${{inputs.tag_name}}.unitypackage
-          
+      
