@@ -59,7 +59,7 @@ jobs:
 
       # Upload html and script
       - name: Upload  html and script
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: html and script
           path: |
