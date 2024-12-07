@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: lysoff/bridge.js
-          ref: ${{ input.tag_name }}
+          ref: ${{ inputs.tag_name }}
           path: bridge/
           token: ${{ secrets.TRIGGER_REPO_TOKEN }}
 
