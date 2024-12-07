@@ -31,6 +31,8 @@ jobs:
           path: bridge/
           token: ${{ secrets.TRIGGER_REPO_TOKEN }}
 
+      
+
       # Build bridge
       - name: Build bridge
         run: | 
@@ -49,7 +51,7 @@ jobs:
       # Inject script
       - name: Inject script
         run: |
-          cd ..
+          ls -d */
           mv bridge/dist/playgama-bridge.js Assets/WebGLTemplates/Bridge/playgama-bridge.js
           rm -rf bridge
           html_file="Assets/WebGLTemplates/Bridge/index.html"
