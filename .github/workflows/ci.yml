@@ -53,11 +53,9 @@ jobs:
       # Inject script
       - name: Inject script
         run: |
+          sed -i '' '/<!-- #cdn -->/,/<!-- #endcdn -->/c\<script src="./playgama-bridge.js"></script>' Assets/WebGLTemplates/Bridge/index.html
           mv bridge/dist/playgama-bridge.js Assets/WebGLTemplates/Bridge/playgama-bridge.js
           rm -rf bridge
-          html_file="Assets/WebGLTemplates/Bridge/index.html"
-          replacement='<script src=".\/script.js" \/>'
-          sed -i '' '/<!-- #cdn -->/,/<!-- #endcdn -->/c\<script src="./playgama-bridge.js"></script>' Assets/WebGLTemplates/Bridge/index.html
 
       # Upload html and script
       - name: Upload  html and script
