@@ -22,11 +22,48 @@ jobs:
     name: Build UnityPackage
     runs-on: ubuntu-latest
     steps:
-      # Checkout
-      - name: Checkout repository
+      # Checkout bridge by version
+      - name: Checkout bridge by version
+        uses: actions/checkout@v4
+        with:
+          repository: lysoff/bridge.js
+          ref: ${{ input.tag_name }}
+          path: bridge/
+          token: ${{ secrets.TRIGGER_REPO_TOKEN }}
+
+      # Build bridge
+      - name: Build bridge
+        run: | 
+          cd bridge
+          npm i 
+          npm run build
+          data=$(sed -n '2p' "dist/playgama-bridge.js")
+          echo "$data" > "dist/playgama-bridge.js"
+          
+      # Checkout bridge-unity
+      - name: Checkout bridge-unity
         uses: actions/checkout@v4
         with:
           lfs: true
+
+      # Inject script
+      - name: Inject script
+        run: |
+          cd ..
+          mv bridge/dist/playgama-bridge.js Assets/WebGLTemplates/Bridge/playgama-bridge.js
+          rm -rf bridge
+          html_file="Assets/WebGLTemplates/Bridge/index.html"
+          replacement='<script src=".\/script.js" \/>'
+          sed -i '/<!-- #cdn -->/,/<!-- #endcdn -->/c\'"$replacement" "$html_file"
+
+      # Upload html and script
+      - name: Upload  html and script
+        uses: actions/upload-artifact@v3
+        with:
+          name: html and script
+          path: |
+            Assets/WebGLTemplates/Bridge/playgama-bridge.js
+            Assets/WebGLTemplates/Bridge/index.html
 
       # Cache
       - name: Cache
