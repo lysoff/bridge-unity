@@ -71,6 +71,8 @@ jobs:
       - name: Commit-changes
         run: |
           git add .
+          git config --global user.email "services@playgama.com"
+          git config --global user.name "Playgama"
           git commit -m 'build changes'
 
       # Cache
